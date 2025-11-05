@@ -11,10 +11,15 @@ Create a user named **`james`** with a **non-interactive shell** on **App Server
 ## 🧰 Steps Followed
 
    1️⃣ SSH into App Server 3
+       
         ssh tony@stapp03
+        
    2️⃣ Create the user james with a non-interactive shell
+       
         sudo useradd -m -s /sbin/nologin james
+
    3️⃣ Verify user creation
+       
         grep james /etc/passwd
 
 ✅ Verification Output
