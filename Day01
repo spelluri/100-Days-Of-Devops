@@ -1,0 +1,4 @@
+To accommodate the backup agent tool's specifications, the system admin team at xFusionCorp Industries requires the creation of a user with a non-interactive shell.
+
+Task:
+Create a user named james with a non-interactive shell on App Server 3.
