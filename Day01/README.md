@@ -37,3 +37,6 @@ The /sbin/nologin shell prevents the user from logging into the system interacti
 Such accounts are used for system processes, backup agents, or automated tasks that need an identity but not a login shell.
 
 Verifying /etc/passwd entries is a reliable way to confirm user shell configurations.
+
+Completed
+
