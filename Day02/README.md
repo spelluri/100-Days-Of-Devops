@@ -23,7 +23,7 @@ Ensure the username is **lowercase**, following standard naming conventions.
 
 3️⃣ Create the user mark with an expiry date
    
-   sudo useradd -m -e 2023-12-07 mark
+    sudo useradd -m -e 2023-12-07 mark
 
 4️⃣ Set password for the user (optional)
 
@@ -38,10 +38,15 @@ Ensure the username is **lowercase**, following standard naming conventions.
 Example result:
 
 Last password change                                    : Nov 05, 2025
+
 Password expires                                        : never
+
 Account expires                                         : Dec 07, 2023
+
 Minimum number of days between password change          : 0
+
 Maximum number of days between password change          : 99999
+
 Number of days of warning before password expires       : 7
 
 This confirms:
