@@ -33,7 +33,8 @@ Ensure the username is **lowercase**, following standard naming conventions.
    
     sudo chage -l mark
 
-✅ Verification Output
+
+✅ VERIFICATION OUTPUT
 
 Example result:
 
@@ -49,20 +50,21 @@ Maximum number of days between password change          : 99999
 
 Number of days of warning before password expires       : 7
 
-This confirms:
+THIS CONFIRMS:
 
-User mark exists
+a. User mark exists
 
-Account is temporary
+b. Account is temporary
 
-Expiry date is set to December 7, 2023
+c. Expiry date is set to December 7, 2023
 
-💡 Learnings
 
-The -e flag in useradd allows setting an account expiry date.
+💡 LEARNINGS 
 
-Temporary users are useful for contractors, developers, or short-term project roles.
+a. The -e flag in useradd allows setting an account expiry date.
 
-The chage command helps verify and manage password/account expiry details.
+b. Temporary users are useful for contractors, developers, or short-term project roles.
 
-Always maintain lowercase usernames for consistency and automation compatibility.
+c. The chage command helps verify and manage password/account expiry details.
+
+d. Always maintain lowercase usernames for consistency and automation compatibility.
