@@ -38,5 +38,4 @@ Such accounts are used for system processes, backup agents, or automated tasks t
 
 Verifying /etc/passwd entries is a reliable way to confirm user shell configurations.
 
-Completed
 
