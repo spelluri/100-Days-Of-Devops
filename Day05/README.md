@@ -72,4 +72,4 @@ Server is left running without manual reboot as requested.
 ✔ How to install SELinux packages on RHEL/CentOS
 ✔ Difference between runtime SELinux mode and persistent configuration
 ✔ How /etc/selinux/config controls next-boot state
-✔ Why security teams disable SELinux temporarily before tuning policies
+✔ Why security teams disable SELinux temporarily before tuning policies.
