@@ -54,4 +54,4 @@ This fulfills the requirement for running automated backup processes across the 
 ✔ Understanding Linux permission bits
 ✔ How to use numeric and symbolic modes in chmod
 ✔ Importance of file permissions in multi-user environments
-✔ Validating permission changes using ls -l
+✔ Validating permission changes using ls -l.
