@@ -1,0 +1,15 @@
+Prerequisites
+
+SSH access to all app servers with a non-root user account
+Sudo privileges on all target servers
+At least one terminal session open during configuration (to avoid lockout)
+List of all app servers in Stratos Datacenter
+
+Security Background
+Direct root SSH login poses significant security risks:
+
+Brute Force Attacks: Root is a known username, making it easier for attackers to attempt password guessing
+Audit Trail: Direct root login makes it harder to track which administrator performed specific actions
+Privilege Escalation Control: Requiring sudo provides an additional layer of authentication and logging
+
+Best Practice: Users should log in with personal accounts and use sudo for administrative tasks.
