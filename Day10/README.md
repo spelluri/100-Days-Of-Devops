@@ -22,12 +22,14 @@ sudo yum install -y zip
 2. Directories created with proper permissions:
 
 sudo mkdir -p /scripts /backup
+
 sudo chown tony:tony /scripts /backup   # adjust user as needed
 
 
 3. Password-less SSH access from App Server 3 user to Nautilus Backup Server:
 
-ssh-keygen -t rsa -b 4096 -C "backup-server-key"  # generate key if not already in app server
+ssh-keygen -t rsa -b 4096 -C "backup-server-key"  # generate key if not already in app server.
+
 ssh-copy-id -i ~/.ssh/id_rsa.pub backup@nastrbk01 # copy key to backup server from app server.
 
 ✅ Task Execution
