@@ -1,4 +1,5 @@
 📅 Day 07 – Password-less SSH Setup for Automation (Stratos DC Task)
+
 Objective
 
 The system admins team of xFusionCorp Industries needs automation scripts on the jump host to access all application servers without requiring manual password entry.
@@ -9,9 +10,9 @@ To achieve this, we must configure password-less SSH access from the thor user o
 Establish key-based authentication:
 
 Jump Host User	Target Server	Sudo User
-thor	         stapp01	     tony
-thor	         stapp02	     steve
-thor	         stapp03	     banner
+thor	           stapp01	     tony
+thor	           stapp02	     steve
+thor	           stapp03	     banner
 
 This ensures that automation scripts can run seamlessly across the infrastructure.
 
