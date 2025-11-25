@@ -1,0 +1,22 @@
+#Isues :
+#1 : Apache server was not starting in app server 1 .
+#2 : Even after starting httpd in app server , the http://stapp01:5003 was not reachable from jump host .
+
+# Resolution :
+#1 Issue Fix 
+# On stapp01 as tony
+sudo netstat -tulnp | grep 5003 #check which service is using port 5003.
+sudo systemctl stop sendmail
+sudo systemctl disable sendmail
+sudo netstat -tulpn | grep 5003  # Verify it's free
+sudo sed -i 's/^Listen .*/Listen 5003/' /etc/httpd/conf/httpd.conf
+sudo systemctl restart httpd
+sudo netstat -tulpn | grep 5003  # Should show httpd now
+curl http://localhost:5003 
+
+#2 Issue Fix: 
+#On stapp01 as tony 
+sudo iptables -I INPUT -p tcp --dport 5003 -j ACCEPT
+# From jump host
+curl http://stapp01:5003
+
