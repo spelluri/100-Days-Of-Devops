@@ -1,0 +1,31 @@
+1. Purpose of the script
+
+The script’s goal is to block incoming traffic on port 8089 for all IPs except the LBR host.
+
+Port 8089 is where the Apache web service is running on all app servers.
+
+The Apache service is on the App Servers, not on the LBR host.
+
+So, to control who can connect to Apache:
+
+Rules must be applied directly on the App Servers.
+
+The LBR host just needs access to forward traffic; it does not serve the web application itself, so it doesn’t need the firewall rules.
+
+2. How traffic flows
+Client -> LBR -> App Server (Apache:8089)
+
+
+Clients are external users trying to reach the website.
+
+LBR is the only trusted source allowed to reach App Servers on port 8089.
+
+App Servers must block everyone else while allowing LBR through.
+
+If you run the script on the LBR host, it will not affect the App Servers’ open port—external clients can still hit port 8089 on the App Servers directly, bypassing the LBR.
+
+✅ In short
+
+App Servers → run the script → block/allow connections to Apache.
+
+LBR host → no need to block anything; it’s just the trusted source forwarding traffic.

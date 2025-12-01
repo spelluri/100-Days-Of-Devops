@@ -1,0 +1,36 @@
+Viewing Rules
+# View all current rules
+sudo iptables -L -v -n
+
+# View rules with line numbers (helpful for deleting specific rules)
+sudo iptables -L --line-numbers
+
+Basic Rules for a Typical Server
+# 1. Allow established connections (already active connections)
+sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# 2. Allow localhost traffic (your own computer talking to itself)
+sudo iptables -A INPUT -i lo -j ACCEPT
+
+# 3. Allow SSH (so you don't lock yourself out!)
+sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+# 4. Allow HTTP and HTTPS (web traffic)
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+
+# 5. Drop everything else
+sudo iptables -A INPUT -j DROP
+
+Saving and Loading Rules
+# Save rules (RHEL/CentOS)
+sudo service iptables save
+# OR on newer systems
+sudo iptables-save > /etc/sysconfig/iptables
+
+# Restore rules
+sudo iptables-restore < /etc/sysconfig/iptables
+
+Flushing (Clearing) All Rules
+# Clear all rules (be careful - might lock you out if remote!)
+sudo iptables -F

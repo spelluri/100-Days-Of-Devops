@@ -1,0 +1,40 @@
+## How to Remember These Commands
+
+Here's a memory trick using **stories and patterns**:
+
+### The Command Structure Pattern
+```
+iptables -[ACTION] [CHAIN] [OPTIONS] -j [TARGET]
+eg: sudo iptables -A INPUT -p tcp -s $LBR_IP --dport $PORT -j ACCEPT (Traffic coming in to your lbr host through protocol tcp and port 8089 should be allowed )
+    sudo iptables -A INPUT -p tcp --dport $PORT -j DROP ( Traffic coming in to all other host through protocol tcp and port 8089 should be silently ignored )
+
+Think: "A Cat Often Jumps Through"
+
+A = Action (what to do)
+C = Chain (where to apply it)
+O = Options (the details)
+J = Jump/Target (what happens when matched)
+
+Key Letters to Remember
+-A = Append (add to end of list)
+-I = Insert (add to beginning)
+-D = Delete
+-L = List
+-F = Flush (clear everything)
+Chains (think of the flow of traffic):
+
+INPUT = traffic coming IN to your server
+OUTPUT = traffic going OUT from your server
+FORWARD = traffic passing THROUGH your server (routing)
+
+Common Options:
+
+-p = protocol (tcp, udp, icmp)
+--dport = destination port (where it's going)
+--sport = source port (where it came from)
+
+Targets (-j):
+
+ACCEPT = let it through
+DROP = silently ignore
+REJECT = block and tell them it's blocked

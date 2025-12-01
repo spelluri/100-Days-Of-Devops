@@ -1,0 +1,37 @@
+Step 1 : Check in which app servers apache is not running .
+sudo systemctl status httpd #run this cmd in all the app servers.
+#if apache is running . check which port its listening to .
+sudo netstat -tulnp | grep 6300
+or
+sudo ss -tulnp | grep 6300
+
+Step 2: Issue 
+a. httpd was not running in stapp01 server . 
+b. Some other process was listening on port 6300 .
+
+# check which process is listening on port 6300 .
+sudo netstat -tulpn | grep 6300
+OR
+sudo ss -tulpn | grep 6300
+
+# get the name of process listening on port 6300.
+sudo lsof -i :6300
+
+#stop the conflicting process
+in this case the othe rprocess listening on port 6300 is sendmail
+sudo systemctl stop sendmail
+sudo systemctl disable sendmail
+
+#Restart Apache.
+sudo systemctl restart httpd
+sudo systemctl enable httpd
+
+#Verify apache is listening on port 6300.
+sudo netstat -tulpn | grep 6300
+or 
+sudo ss -tulpn | grep 6300
+
+Step 3: Resolution 
+a. Port 6300 was taken by sendmail process , so apache couldnt bind to 6300.
+b. stop or move sendmail process to another port and restart apache . Apache now runs on 6300 port .
+

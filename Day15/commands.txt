@@ -1,0 +1,46 @@
+1. Install and start nginx in app server3 .
+sudo yum install nginx -y
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+2. Move files to appropriate location .
+mv /tmp/nautilus.crt /etc/nginx/ssl/
+mv /tmp/nautilus.key /etc/nginx/ssl/
+
+chmod 644 /etc/nginx/ssl/nautilus.crt
+chmod 600 /etc/nginx/ssl/nautilus.key
+
+3. Create an index.html file .
+echo "Welcome!" > /usr/share/nginx/html/index.html
+chmod 644 /usr/share/nginx/html/index.html
+
+4. Configure nginx conf file for SSL.
+Create a separate configuration file in /etc/nginx/conf.d/
+
+cat > /etc/nginx/conf.d/ssl.conf << 'EOF'
+server {
+    listen 443 ssl;
+    server_name localhost;
+    
+    ssl_certificate /etc/nginx/ssl/nautilus.crt;
+    ssl_certificate_key /etc/nginx/ssl/nautilus.key;
+    
+    root /usr/share/nginx/html;
+    index index.html;
+    
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+EOF
+
+5. Test nginx.
+nginx -t
+
+6. Restart Nginx .
+sudo systemctl restart nginx
+sudo systemctl status nginx
+
+7. Now from jump host, test the connection
+curl -Ik https://stapp03/
+
