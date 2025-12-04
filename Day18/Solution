@@ -1,0 +1,83 @@
+🖥️ PART A — Install Apache, PHP on ALL APP HOSTS
+
+Run these commands on all App servers:
+
+1. Install Apache, PHP, and required PHP extensions
+sudo yum install -y httpd php php-mysqlnd php-fpm php-cli
+
+2. Change Apache port from 80 → 3001
+
+Open /etc/httpd/conf/httpd.conf or create a new port config.
+
+sudo sed -i 's/Listen 80/Listen 3001/' /etc/httpd/conf/httpd.conf
+
+
+OR create a new file:
+
+echo "Listen 3001" | sudo tee /etc/httpd/conf.d/port-3001.conf
+
+3. Start & enable Apache
+sudo systemctl enable httpd
+sudo systemctl restart httpd
+
+4. Verify Apache running on 3001
+sudo ss -tulnp | grep httpd
+
+
+You should see:
+
+LISTEN ... :3001
+
+📁 Shared HTML Directory
+
+They said:
+
+/vaw/www/html is mounted on each app host under /var/www/html
+
+Meaning WordPress/PHP code goes into:
+
+/var/www/html
+
+🗄️ PART C — Install/Configure MariaDB on DB SERVER
+
+Run these on DB server only:
+
+1. Install MariaDB
+sudo yum install -y mariadb-server
+
+2. Start & enable MariaDB
+sudo systemctl enable mariadb
+sudo systemctl start mariadb
+
+3. Secure MariaDB (optional but good)
+
+If required:
+
+sudo mysql_secure_installation
+
+🗃️ PART D — Create DB + User + Grant Privileges
+
+Login to MariaDB:
+
+mysql -u root
+
+
+Run these SQL commands:
+
+CREATE DATABASE kodekloud_db1;
+
+CREATE USER 'kodekloud_aim'@'%' IDENTIFIED BY 'GyQkFRVNr3';
+
+GRANT ALL PRIVILEGES ON kodekloud_db1.* TO 'kodekloud_aim'@'%';
+
+FLUSH PRIVILEGES;
+
+
+💡 Using % allows the App servers to connect remotely.
+
+🌐 FINAL CHECK (LBR / APP Button)
+
+When you click App in KodeKloud, it loads the load balancer (LBR).
+You should see:
+
+App is able to connect to the database using user kodekloud_aim
